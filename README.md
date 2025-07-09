@@ -1,8 +1,8 @@
 The packages needs to run the project grocerystartup:
 whitenoise 
 psycopg2
-openssl
+openssl (choco install)
 content security policy (django_csp)
-Pillow 
+Pillow (image library)
 django-cors-headers                          
-djangorestframework 
+djangorestframework  (Rest Api)

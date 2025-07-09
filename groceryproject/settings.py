@@ -39,7 +39,14 @@ if not SECRET_KEY:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+
+
+
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 # Retrieve the value of ALLOWED_HOSTS from the environment variable
 # Split the value by comma to create a list of allowed hosts
@@ -113,6 +120,7 @@ WSGI_APPLICATION = "groceryproject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("DATABASE_ENGINE"),
+        # 'NAME': os.path.join(BASE_DIR, os.getenv('DATABASE_NAME', 'db.sqlite3')),
         "NAME": os.environ.get("DATABASE_NAME"),
         "USER": os.environ.get("DATABASE_USER"),
         "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
@@ -155,7 +163,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static') ,os.path.join(BASE_DIR,'newreact/build/static')] # react static files are important
 
@@ -180,19 +188,24 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_REFERRER_POLICY = "strict-origin"
 
 
-# Content Security Policy settings
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_FONT_SRC = ("'self'",)
-CSP_IMG_SRC = ("'self'",)
-CSP_CONNECT_SRC = ("'self'",)
-CSP_FRAME_SRC = ("'none'",)
-CSP_OBJECT_SRC = ("'none'",)
-CSP_MEDIA_SRC = ("'self'",)
-CSP_FRAME_ANCESTORS = ("'none'",)
-CSP_FORM_ACTION = ("'self'",)
-CSP_BASE_URI = ("'self'",)
+# Content Security Policy settings (new)
+
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'default-src': ("'self'",),
+        'script-src': ("'self'",),
+        'style-src': ("'self'", "'unsafe-inline'"),
+        'img-src': ("'self'",),
+        'connect-src': ("'self'",),
+        'font-src': ("'self'",),
+        'object-src': ("'none'",),
+        'media-src': ("'self'",),
+        'frame-src': ("'none'",),
+        'frame-ancestors': ("'none'",),
+        'form-action': ("'self'",),
+        'base-uri': ("'self'",),
+    }
+}
 
 
 
