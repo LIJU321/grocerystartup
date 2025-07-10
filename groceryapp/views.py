@@ -48,8 +48,11 @@ def Register(request):
 
 # React page loading index.html.
 
-class ReactPageView(TemplateView):
-    template_name = os.path.join(BASE_DIR,'newreact/build/index.html')
+def react_view(request):
+    return render(request,'react_index.html')
+
+# class ReactPageView(TemplateView):
+#     template_name = os.path.join(BASE_DIR,'newreact/build/index.html')
 
 
 def Signup(request):

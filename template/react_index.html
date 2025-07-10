@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Freshshop - Ecommerce</title>
+
+  <!-- 1) Pass the CSP nonce into JS before any bundles load -->
+  <script nonce="{{ csp_nonce }}">
+    window.__CSP_NONCE__ = "{{ csp_nonce }}";
+  </script>
+
+  <!-- 2) Load your compiled CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.f4979d08.css' %}">
+</head>
+<body>
+  <div id="root"></div>
+
+ <script defer src="{% static 'js/453.94f12824.chunk.js' %}"></script>
+  <script defer src="{% static 'js/main.b4765366.js' %}"></script>
+</body>
+</html>
+

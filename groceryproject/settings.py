@@ -73,6 +73,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'corsheaders.middleware.CorsMiddleware',
@@ -83,6 +84,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'groceryapp.middleware.CSPNonceMiddleware',
 ]
 
 ROOT_URLCONF = "groceryproject.urls"
@@ -98,6 +100,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'groceryapp.context_processors.csp_nonce',
             ],
         },
     },
@@ -127,7 +130,7 @@ DATABASES = {
         "HOST": os.environ.get("DATABASE_HOST"),
     }
 }
-
+ 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -194,7 +197,7 @@ CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'default-src': ("'self'",),
         'script-src': ("'self'",),
-        'style-src': ("'self'", "'unsafe-inline'"),
+        'style-src': ("'self'",),
         'img-src': ("'self'",),
         'connect-src': ("'self'",),
         'font-src': ("'self'",),
@@ -206,7 +209,6 @@ CONTENT_SECURITY_POLICY = {
         'base-uri': ("'self'",),
     }
 }
-
 
 
 # Default primary key field type
